@@ -1,0 +1,27 @@
+{
+  "name": "reader",
+  "version": "1.0.0",
+  "main": "node_modules/expo/AppEntry.js",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web"
+  },
+  "dependencies": {
+    "@epubjs-react-native/core": "^1.1.0",
+    "@epubjs-react-native/expo-file-system": "^1.0.0",
+    "@react-native-async-storage/async-storage": "~1.17.3",
+    "expo": "~46.0.16",
+    "expo-status-bar": "~1.4.0",
+    "react": "18.0.0",
+    "react-native": "0.69.6",
+    "react-native-fs": "^2.20.0",
+    "react-native-gesture-handler": "~2.5.0",
+    "react-native-webview": "11.23.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.9"
+  },
+  "private": true
+}
