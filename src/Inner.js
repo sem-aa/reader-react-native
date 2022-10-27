@@ -4,7 +4,7 @@ import { useFileSystem } from "@epubjs-react-native/expo-file-system";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect } from "react";
 
-export const Inner = ({ local }) => {
+export const Inner = ({ local, src }) => {
   const { width, height } = useWindowDimensions();
   const { getCurrentLocation } = useReader();
 
@@ -15,7 +15,12 @@ export const Inner = ({ local }) => {
   const addLocalToStorage = async () => {
     try {
       const localObj = getCurrentLocation();
-      await AsyncStorage.setItem("@local", JSON.stringify(localObj));
+      const obj = {
+        src,
+        localObj
+      }
+      // await AsyncStorage.setItem("@src", JSON.stringify(src));
+      await AsyncStorage.setItem("@local", JSON.stringify(obj));
     } catch (e) {
       console.log(e);
     }
@@ -24,9 +29,9 @@ export const Inner = ({ local }) => {
   return (
     <SafeAreaView style={styles.container}>
       <Reader
-        src="https://s3.amazonaws.com/moby-dick/OPS/package.opf"
+        src={src}
         width={width}
-        height={height * 0.9}
+        height={height * 0.8}
         fileSystem={useFileSystem}
         initialLocation={local?.end?.cfi}
       />
