@@ -11,7 +11,6 @@ import {
   SafeAreaView,
 } from "react-native";
 import * as DocumentPicker from "expo-document-picker";
-import * as FileSystem from "expo-file-system";
 
 const link = "https://s3.amazonaws.com/moby-dick/OPS/package.opf";
 
@@ -40,20 +39,16 @@ export const Book = () => {
     <SafeAreaView style={styles.container}>
       <View>
         <View style={styles.options}>
-          <TouchableOpacity   onPress={() => setSrc(link)}>
+          <TouchableOpacity onPress={() => setSrc(link)}>
             <Text style={styles.btn}>Open Moby Dick</Text>
           </TouchableOpacity>
           <TouchableOpacity
-          
             onPress={async () => {
               const file = await DocumentPicker.getDocumentAsync();
-              const base64 = await FileSystem.readAsStringAsync(file.uri, {
-                encoding: FileSystem.EncodingType.Base64,
-              });
-              setSrc(base64.toString());
+              setSrc(file.uri);
             }}
           >
-            <Text style={styles.btn} >Open Book on phone</Text>
+            <Text style={styles.btn}>Open Book on phone</Text>
           </TouchableOpacity>
         </View>
         <ReaderProvider>
@@ -71,7 +66,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   options: {
-    padding: 20,
+    padding: 30,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
@@ -81,5 +76,5 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "black",
     borderRadius: 5,
-  }
+  },
 });
