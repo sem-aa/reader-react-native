@@ -19,7 +19,6 @@ export const Inner = ({ local, src }) => {
         src,
         localObj
       }
-      // await AsyncStorage.setItem("@src", JSON.stringify(src));
       await AsyncStorage.setItem("@local", JSON.stringify(obj));
     } catch (e) {
       console.log(e);
