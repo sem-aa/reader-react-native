@@ -18,13 +18,17 @@ export const Inner = ({ local, src }) => {
       setBase64(base64.toString());
     } else setBase64(null);
   };
-
+  
   useEffect(() => {
     addLocalToStorage();
+  });
+
+  useEffect(() => {
     checkLinkorLocal(src);
   }, [src]);
 
   const addLocalToStorage = async () => {
+    console.log("add local storage");
     try {
       const localObj = getCurrentLocation();
       const obj = {
